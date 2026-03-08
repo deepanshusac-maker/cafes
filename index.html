@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Capetown Cafe — Patna</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <a href="#hero" class="nav-logo">The <span>Capetown</span> Cafe</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+            <li><a href="#visit" class="nav-cta">Reserve</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="openMobileNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#menu" onclick="closeMobileNav()">Menu</a>
+        <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
+        <a href="#reviews" onclick="closeMobileNav()">Reviews</a>
+        <a href="#visit" onclick="closeMobileNav()">Visit Us</a>
+        <a href="#visit" onclick="closeMobileNav()" style="color:var(--gold)">Reserve a Table</a>
+    </div>
+
+    <!-- ── HERO ── -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-circle"></div>
+        <div class="hero-circle"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Est. in the Heart of Patna</p>
+            <h1 class="hero-title">The <em>Capetown</em><br>Cafe</h1>
+            <p class="hero-tagline">Where every cup tells a story &amp; every meal is a memory</p>
+            <div class="hero-status-wrap">
+                <div id="statusPill" class="status-pill">
+                    <span class="status-dot"></span>
+                    <span id="statusText">Checking status...</span>
+                </div>
+            </div>
+            <div class="hero-badge">
+                <span class="stars">★★★★★</span>
+                <strong>4.6</strong>
+                <span class="sep">|</span>
+                <span>2,100+ Reviews</span>
+                <span class="sep">|</span>
+                <span>Open till 11 PM</span>
+            </div>
+            <div class="hero-btns">
+                <a href="#visit" class="btn-primary">Reserve a Table</a>
+                <a href="#menu" class="btn-outline">Explore Menu</a>
+            </div>
+        </div>
+        <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about">
+        <div class="about-deco"></div>
+        <div class="about-grid">
+            <div class="about-img-wrap reveal-left">
+                <div class="about-img-frame">
+                    <img src="images/our space.png" alt="The Capetown Cafe Interior" class="about-img">
+                </div>
+                <div class="about-accent-box reveal-scale stagger-3">
+                    <strong>#1</strong>
+                    <span>Café in Patna</span>
+                </div>
+            </div>
+            <div class="about-text reveal-right stagger-2">
+                <p class="section-label">Our Story</p>
+                <h2 class="section-title">A Sip of <em>Cape Town</em><br>in the Heart of Bihar</h2>
+                <p>Tucked away on the second floor of Sumitra Palace, The Capetown Cafe was born from a simple desire —
+                    to create a space where Patna could slow down, savour, and connect. Inspired by the vibrant café
+                    culture of Cape Town, South Africa, we've blended global sensibilities with the warmth of Indian
+                    hospitality.</p>
+                <p>With over 2,100 glowing reviews and a proud 4.6-star rating, we've become one of Patna's most beloved
+                    dining destinations — a place where first dates, family brunches, and late-night conversations all
+                    find a home under one roof.</p>
+                <p>From our hand-crafted espresso blends to our indulgent comfort mains, every item on our menu is
+                    prepared with love, fresh ingredients, and an eye for detail that keeps our guests coming back.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <strong>4.6★</strong>
+                        <span>Average Rating</span>
+                    </div>
+                    <div class="stat">
+                        <strong>2,100+</strong>
+                        <span>Happy Reviews</span>
+                    </div>
+                    <div class="stat">
+                        <strong>11 PM</strong>
+                        <span>Open Until</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── MENU ── -->
+    <section id="menu">
+        <div class="menu-header reveal-scale stagger-1">
+            <p class="section-label">What We Serve</p>
+            <h2 class="section-title">Signature <em>Highlights</em></h2>
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.8;margin-top:.8rem">From morning brews to
+                midnight bites — our menu is crafted to delight every palate, every hour.</p>
+        </div>
+
+        <!-- Menu Filter Bar -->
+        <div class="menu-filters reveal-scale">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="coffee">Coffee</button>
+            <button class="filter-btn" data-filter="snack">Snacks</button>
+            <button class="filter-btn" data-filter="main">Mains</button>
+            <button class="filter-btn" data-filter="dessert">Desserts</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-card reveal-scale stagger-1" data-category="coffee">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&q=80&w=600"
+                        alt="Cape Cold Brew">
+                    <span class="menu-tag">Signature</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Cape Cold Brew</h3>
+                    <p>12-hour steeped cold brew with oat milk foam and a hint of Madagascar vanilla.</p>
+                    <div class="menu-price"><strong>₹ 220</strong><span>Bestseller</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-2" data-category="coffee">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1541167760496-162955ed8a9f?auto=format&fit=crop&q=80&w=600"
+                        alt="Spiced Masala Latte">
+                    <span class="menu-tag">Coffee</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Spiced Masala Latte</h3>
+                    <p>A desi-inspired latte with cardamom, ginger, cinnamon &amp; single-origin espresso.</p>
+                    <div class="menu-price"><strong>₹ 195</strong><span>Fan Favourite</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-3" data-category="snack">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=600"
+                        alt="Peri-Peri Paneer Toast">
+                    <span class="menu-tag">Snack</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Peri-Peri Paneer Toast</h3>
+                    <p>Thick sourdough with flame-grilled paneer, roasted peppers &amp; house peri-peri drizzle.</p>
+                    <div class="menu-price"><strong>₹ 260</strong><span>Vegetarian</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-4" data-category="main">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=600"
+                        alt="Smoky BBQ Pasta">
+                    <span class="menu-tag">Main</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Smoky BBQ Pasta</h3>
+                    <p>Al dente penne in a rich smoked tomato &amp; herb sauce, topped with parmesan shavings.</p>
+                    <div class="menu-price"><strong>₹ 340</strong><span>Chef's Pick</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-1" data-category="main">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600"
+                        alt="Capetown Classic Burger">
+                    <span class="menu-tag">Main</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Capetown Classic Burger</h3>
+                    <p>Double-stacked patty with caramelised onions, aged cheddar, pickles &amp; truffle aioli.</p>
+                    <div class="menu-price"><strong>₹ 380</strong><span>Bestseller</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-2" data-category="snack">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&q=80&w=600"
+                        alt="Avocado &amp; Feta Bowl">
+                    <span class="menu-tag">Light Bite</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Avocado &amp; Feta Bowl</h3>
+                    <p>Fresh greens, roasted cherry tomatoes, creamy avocado, feta &amp; lemon-herb vinaigrette.</p>
+                    <div class="menu-price"><strong>₹ 295</strong><span>Healthy</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-3" data-category="dessert">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=80&w=600"
+                        alt="Belgian Waffle Stack">
+                    <span class="menu-tag">Dessert</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Belgian Waffle Stack</h3>
+                    <p>Golden waffles layered with Nutella, fresh strawberries, vanilla cream &amp; crushed almonds.</p>
+                    <div class="menu-price"><strong>₹ 280</strong><span>Sweet Treat</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-4" data-category="dessert">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=600"
+                        alt="Dark Choco Lava Cake">
+                    <span class="menu-tag">Must Try</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Dark Choco Lava Cake</h3>
+                    <p>Warm molten dark chocolate cake with a vanilla bean ice cream quenelle.</p>
+                    <div class="menu-price"><strong>₹ 245</strong><span>Must Try</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── GALLERY ── -->
+    <section id="gallery">
+        <div class="gallery-header reveal">
+            <p class="section-label" style="color:var(--gold)">Visual Stories</p>
+            <h2 class="section-title" style="color:var(--cream)">Inside the <em>Cafe</em></h2>
+            <p>Warm lights, curated corners, and moments worth staying for.</p>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="g-item" data-label="Our Space">
+                <img src="images/our space.png" alt="Cafe Space">
+            </div>
+            <div class="g-item" data-label="Coffee Craft">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600"
+                    alt="Latte Art">
+            </div>
+            <div class="g-item" data-label="Garden Corner">
+                <img src="images/garden.png" alt="Cafe Plants">
+            </div>
+            <div class="g-item" data-label="Evening Vibe">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800"
+                    alt="Night Ambiance">
+            </div>
+            <div class="g-item" data-label="Weekend Brunch">
+                <img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&q=80&w=600"
+                    alt="Brunch Spread">
+            </div>
+            <div class="g-item" data-label="Sweet Treats">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600"
+                    alt="Desserts">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── REVIEWS ── -->
+    <section id="reviews">
+        <div class="reviews-header reveal">
+            <p class="section-label">What Guests Say</p>
+            <h2 class="section-title">Loved by <em>Patna</em></h2>
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.8;margin-top:.8rem">Real words from real guests —
+                2,100+ reviews and counting.</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card reveal-left stagger-1">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Hands down the best café experience I've had in Patna. The ambiance is warm and
+                    beautiful, the coffee is absolutely outstanding, and the staff genuinely make you feel at home. The
+                    cold brew is a must-try — I came back three times in one week!"</p>
+                <div class="review-author">
+                    <div class="review-avatar">A</div>
+                    <div class="review-author-info">
+                        <strong>Aanya Sharma</strong>
+                        <span>Patna, Bihar</span>
+                        <div class="review-verified">✓ Verified Guest</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card reveal-scale stagger-2">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"The Capetown Cafe has completely redefined casual dining for me. The lava cake
+                    is divine, the pasta is cooked to perfection, and the interiors feel like you've been transported
+                    somewhere far more cosmopolitan. A gem in Mahesh Nagar!"</p>
+                <div class="review-author">
+                    <div class="review-avatar">R</div>
+                    <div class="review-author-info">
+                        <strong>Rohan Verma</strong>
+                        <span>Keshri Nagar, Patna</span>
+                        <div class="review-verified">✓ Verified Guest</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card reveal-right stagger-3">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I've been bringing clients and friends here for months and it never disappoints.
+                    The rooftop feel, the curated playlist, the presentation of food — it all just works together
+                    beautifully. It's now my go-to recommendation whenever anyone visits Patna."</p>
+                <div class="review-author">
+                    <div class="review-avatar">P</div>
+                    <div class="review-author-info">
+                        <strong>Priya Nandan</strong>
+                        <span>Patna, Bihar</span>
+                        <div class="review-verified">✓ Verified Guest</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VISIT ── -->
+    <section id="visit">
+        <div class="visit-grid">
+            <div class="visit-info reveal">
+                <p class="section-label">Find Us</p>
+                <h2 class="section-title">Come <em>Visit</em> Us</h2>
+                <div class="info-block">
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>2nd Floor, Sumitra Palace<br>Atal Path, Harihar Path<br>Mahesh Nagar, Keshri Nagar<br>Patna,
+                            Bihar – 800024</p>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-icon">🕐</div>
+                    <div>
+                        <h4>Opening Hours</h4>
+                        <div class="hours-grid">
+                            <span>Mon – Fri</span><strong>10:00 AM – 11:00 PM</strong>
+                            <span>Sat – Sun</span><strong>9:00 AM – 11:00 PM</strong>
+                            <span>Public Holidays</span><strong>10:00 AM – 11:00 PM</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <h4>Contact</h4>
+                        <p>+91 98765 43210<br>hello@capetowncafe.in</p>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-icon">⭐</div>
+                    <div>
+                        <h4>Reservations</h4>
+                        <p>Walk-ins welcome. For groups of 6+, we recommend calling ahead to ensure the best experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="map-frame">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.9!2d85.1376!3d25.6093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM2JzMzLjUiTiA4NcKwMDgnMTUuNCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="The Capetown Cafe Location">
+                    </iframe>
+                </div>
+                <a href="https://maps.google.com/?q=Sumitra+Palace+Atal+Path+Patna" target="_blank" class="btn-primary"
+                    style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;text-decoration:none">
+                    <span>📍</span> Open in Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">The <span>Capetown</span> Cafe</div>
+                <p>A warm corner of the world in the heart of Patna. Crafted coffee, honest food, and good company —
+                    always.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" title="Instagram">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="5" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Facebook">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Twitter/X">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Zomato">🍽</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#visit">Visit Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Opening Hours</h5>
+                <ul>
+                    <li><a href="#">Mon – Fri: 10am – 11pm</a></li>
+                    <li><a href="#">Sat – Sun: 9am – 11pm</a></li>
+                    <li><a href="#">Holidays: 10am – 11pm</a></li>
+                    <li><a href="#">📞 +91 98765 43210</a></li>
+                    <li><a href="#">✉ hello@capetowncafe.in</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Capetown Cafe, Patna. All rights reserved.</p>
+            <div class="footer-rating">
+                <span class="stars">★★★★★</span>
+                <span>4.6 · 2,100+ Reviews on Google</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

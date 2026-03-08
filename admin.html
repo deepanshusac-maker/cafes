@@ -230,7 +230,6 @@
                     Owner Portal</p>
                 <h1>Café Dashboard</h1>
             </div>
-            <div id="saveBanner" class="save-banner">Changes Saved Locally</div>
         </div>
 
         <div class="card-grid">
@@ -301,16 +300,17 @@
         </div>
     </main>
 
+    <div id="toast-container"></div>
     <script src="settings.js"></script>
+    <script src="script.js"></script>
     <script>
         function checkLogin() {
             const pin = document.getElementById('adminPin').value;
             if (pin === '1234') {
                 document.getElementById('loginOverlay').style.display = 'none';
+                showToast('Welcome back, Aurora!', 'success');
             } else {
-                const err = document.getElementById('loginError');
-                err.style.display = 'block';
-                setTimeout(() => { err.style.display = 'none'; }, 2000);
+                showToast('Invalid PIN. Please try again.', 'error');
             }
         }
 
@@ -367,10 +367,7 @@
             };
 
             localStorage.setItem('aurora_settings', JSON.stringify(newSettings));
-
-            const banner = document.getElementById('saveBanner');
-            banner.style.display = 'block';
-            setTimeout(() => { banner.style.display = 'none'; }, 3000);
+            showToast('Settings saved successfully!', 'success');
         }
 
         window.onload = loadAdmin;

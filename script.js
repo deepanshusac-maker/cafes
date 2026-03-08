@@ -222,6 +222,36 @@ if (slider && track) {
         track.style.transform = `translateX(${x}px)`;
     });
 }
+// ── TOAST NOTIFICATION SYSTEM ──
+function showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    let icon = 'ℹ️';
+    if (type === 'success') icon = '✅';
+    if (type === 'error') icon = '❌';
+    if (type === 'warning') icon = '⚠️';
+
+    toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span class="toast-message">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    // Show toast
+    setTimeout(() => toast.classList.add('show'), 100);
+
+    // Remove toast
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+    }, 4000);
+}
+
 // ── RESERVATION MODAL LOGIC ──
 function openReserveModal() {
     const modal = document.getElementById('reserveModal');
@@ -231,6 +261,13 @@ function openReserveModal() {
         modal.offsetHeight;
         modal.classList.add('open');
         document.body.style.overflow = 'hidden'; // Prevent scroll
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('resDate');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
     }
 }
 
@@ -251,12 +288,41 @@ if (reserveForm) {
     reserveForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const name = document.getElementById('resName').value;
-        const phone = document.getElementById('resPhone').value;
+        const name = document.getElementById('resName').value.trim();
+        const phone = document.getElementById('resPhone').value.trim();
         const guests = document.getElementById('resGuests').value;
         const date = document.getElementById('resDate').value;
         const time = document.getElementById('resTime').value;
-        const special = document.getElementById('resSpecial').value;
+        const special = document.getElementById('resSpecial').value.trim();
+
+        // --- VALIDATION ---
+        if (name.length < 3) {
+            showToast('Please enter your full name.', 'error');
+            return;
+        }
+
+        const phoneRegex = /^[+]?[\d\s-]{10,}$/;
+        if (!phoneRegex.test(phone)) {
+            showToast('Please enter a valid phone number.', 'error');
+            return;
+        }
+
+        const selectedDate = new Date(date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (selectedDate < today) {
+            showToast('Please select a future date.', 'error');
+            return;
+        }
+
+        if (!time) {
+            showToast('Please select a preferred time.', 'error');
+            return;
+        }
+
+        // --- SUCCESS ---
+        showToast('Requesting reservation via WhatsApp...', 'success');
 
         // Construct WhatsApp message
         const message = `Hi Aurora Cafe! I'd like to request a reservation:
@@ -274,12 +340,12 @@ ${special ? `- Special Requests: ${special}` : ''}`;
 
         const whatsappUrl = `https://wa.me/${cafePhone}?text=${encodedMessage}`;
 
-        // Open WhatsApp
-        window.open(whatsappUrl, '_blank');
-
-        // Close modal
-        closeReserveModal();
-        reserveForm.reset();
+        // Open WhatsApp after a short delay to let toast be seen
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank');
+            closeReserveModal();
+            reserveForm.reset();
+        }, 1500);
     });
 }
 

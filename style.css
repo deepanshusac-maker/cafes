@@ -15,6 +15,31 @@
     --gold: #C8993A;
     --text: #3A2318;
     --muted: #7A6355;
+
+    /* GLASSMORPHISM */
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    --glass-blur: 12px;
+}
+
+/* ── CUSTOM SCROLLBAR ── */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--espresso);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--terra);
+    border: 3px solid var(--espresso);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
 }
 
 html {
@@ -43,10 +68,12 @@ nav {
 }
 
 nav.scrolled {
-    background: rgba(43, 26, 16, .93);
-    backdrop-filter: blur(10px);
+    background: rgba(43, 26, 16, .85);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-bottom: 1px solid var(--glass-border);
     padding: .85rem 4vw;
-    box-shadow: 0 2px 30px rgba(0, 0, 0, .35);
+    box-shadow: var(--glass-shadow);
 }
 
 .nav-logo {
@@ -227,8 +254,9 @@ nav.scrolled {
     font-size: clamp(.9rem, 2vw, 1.05rem);
     font-weight: 300;
     color: rgba(255, 255, 255, .72);
-    letter-spacing: .06em;
+    letter-spacing: .08em;
     margin-bottom: 2.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     animation: fadeUp .9s .7s forwards;
 }
@@ -608,16 +636,21 @@ section {
 }
 
 .menu-card {
-    background: #fff;
-    border-radius: 4px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform .3s, box-shadow .3s;
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
     cursor: default;
 }
 
 .menu-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(43, 26, 16, .14);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--gold);
+    box-shadow: var(--glass-shadow);
 }
 
 .menu-card-img {
@@ -815,18 +848,56 @@ section {
     gap: 1.8rem;
 }
 
-.review-card {
-    background: #fff;
-    border-radius: 4px;
-    padding: 2.2rem;
-    position: relative;
+/* ── REVIEWS SLIDER ── */
+.reviews-slider-container {
+    padding: 0 4vw 4rem;
     overflow: hidden;
-    transition: transform .3s, box-shadow .3s;
+    position: relative;
+    cursor: grab;
 }
 
-.review-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(43, 26, 16, .1);
+.reviews-slider-container:active {
+    cursor: grabbing;
+}
+
+.reviews-track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+    user-select: none;
+}
+
+.review-card {
+    min-width: 380px;
+    max-width: 380px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        min-width: 290px;
+        max-width: 290px;
+        padding: 1.8rem;
+    }
+}
+
+.slider-hint {
+    text-align: center;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-top: 2rem;
+    opacity: 0.6;
 }
 
 .review-card::before {
@@ -1379,13 +1450,68 @@ footer {
     color: var(--gold);
 }
 
-.mobile-close {
+/* ── PRELOADER ── */
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--espresso);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.preloader.loaded {
+    transform: translateY(-100%);
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: loaderIn 1s forwards;
+}
+
+.loader-logo span {
+    color: var(--gold);
+}
+
+.loader-bar {
+    width: 120px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-progress {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    color: var(--cream);
-    font-size: 1.6rem;
-    cursor: pointer;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: var(--gold);
+    animation: progress 2s ease-in-out forwards;
+}
+
+@keyframes loaderIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes progress {
+    to {
+        width: 100%;
+    }
 }

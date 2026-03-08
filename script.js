@@ -4,22 +4,61 @@ window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Improved Scroll Reveal
 const revealElements = document.querySelectorAll('[class*="reveal"]');
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Stop observing once visible to save resources
+
+            // Trigger counter if the element OR its child is a counter
+            const counter = entry.target.classList.contains('counter') ?
+                entry.target :
+                entry.target.querySelector('.counter');
+
+            if (counter && !counter.classList.contains('counted')) {
+                startCounter(counter);
+                counter.classList.add('counted');
+            }
+
             revealObserver.unobserve(entry.target);
         }
     });
 }, {
     threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px' // Trigger slightly before element enters viewport
+    rootMargin: '0px 0px -50px 0px'
 });
 
 revealElements.forEach(el => revealObserver.observe(el));
+
+// ── DYNAMIC COUNTERS ──
+function startCounter(el) {
+    const target = parseFloat(el.getAttribute('data-count'));
+    let current = 0;
+    const duration = 2000;
+    const steps = 100;
+    const increment = target / steps;
+    const stepTime = duration / steps;
+
+    const interval = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            el.innerText = target % 1 === 0 ? target : target.toFixed(1);
+            clearInterval(interval);
+        } else {
+            el.innerText = target % 1 === 0 ? Math.floor(current) : current.toFixed(1);
+        }
+    }, stepTime);
+}
+
+// ── PRELOADER ──
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('loaded');
+        }, 1000);
+    }
+});
 
 // ── DYNAMIC OPENING STATUS ──
 function updateCafeStatus() {
@@ -80,6 +119,65 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateCafeStatus, 60000);
 });
 
-// Mobile Nav
-function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
-function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+// ── REVIEWS DRAGGABLE SLIDER ──
+const slider = document.querySelector('.reviews-slider-container');
+const track = document.getElementById('reviewsTrack');
+
+if (slider && track) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let x = 0;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = x;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const walkX = (e.pageX - track.offsetLeft) - startX;
+        x = scrollLeft + walkX;
+
+        // Boundaries
+        const maxScroll = -(track.scrollWidth - slider.offsetWidth + 80);
+        if (x > 0) x = 0;
+        if (x < maxScroll) x = maxScroll;
+
+        track.style.transform = `translateX(${x}px)`;
+    });
+
+    // Touch support
+    slider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - track.offsetLeft;
+        scrollLeft = x;
+    });
+
+    slider.addEventListener('touchend', () => {
+        isDown = false;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const walkX = (e.touches[0].pageX - track.offsetLeft) - startX;
+        x = scrollLeft + walkX;
+
+        const maxScroll = -(track.scrollWidth - slider.offsetWidth + 80);
+        if (x > 0) x = 0;
+        if (x < maxScroll) x = maxScroll;
+
+        track.style.transform = `translateX(${x}px)`;
+    });
+}

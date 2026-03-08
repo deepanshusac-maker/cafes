@@ -285,6 +285,22 @@ function closeReserveModal() {
 // Handle Reservation Form Submission
 const reserveForm = document.getElementById('reserveForm');
 if (reserveForm) {
+    // Input Restrictions
+    const nameInput = document.getElementById('resName');
+    const phoneInput = document.getElementById('resPhone');
+
+    if (nameInput) {
+        nameInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+        });
+    }
+
+    if (phoneInput) {
+        phoneInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^\d+]/g, '');
+        });
+    }
+
     reserveForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -296,14 +312,14 @@ if (reserveForm) {
         const special = document.getElementById('resSpecial').value.trim();
 
         // --- VALIDATION ---
-        if (name.length < 3) {
-            showToast('Please enter your full name.', 'error');
+        if (name.split(' ').length < 1 || name.length < 2) {
+            showToast('Please enter a valid name (words only).', 'error');
             return;
         }
 
-        const phoneRegex = /^[+]?[\d\s-]{10,}$/;
-        if (!phoneRegex.test(phone)) {
-            showToast('Please enter a valid phone number.', 'error');
+        const phoneOnlyDigits = phone.replace(/[+]/g, '');
+        if (phoneOnlyDigits.length < 10) {
+            showToast('Please enter a valid 10-digit phone number.', 'error');
             return;
         }
 
@@ -337,15 +353,29 @@ ${special ? `- Special Requests: ${special}` : ''}`;
 
         // Use phone from settings.js or fallback
         const cafePhone = (typeof CAFE_SETTINGS !== 'undefined') ? CAFE_SETTINGS.phone.replace(/\s+/g, '') : '911234567890';
-
         const whatsappUrl = `https://wa.me/${cafePhone}?text=${encodedMessage}`;
 
-        // Open WhatsApp after a short delay to let toast be seen
+        // Generate Google Calendar Link
+        const startDateTime = new Date(`${date}T${time}`).toISOString().replace(/-|:|\.\d\d\d/g, "");
+        const endDateTime = new Date(new Date(`${date}T${time}`).getTime() + 60 * 60 * 1000).toISOString().replace(/-|:|\.\d\d\d/g, "");
+        const calUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=Reservation+at+The+Aurora+Cafe&dates=${startDateTime}/${endDateTime}&details=Table+for+${guests}+guests.+Reservation+confirmed+via+WhatsApp.&location=The+Aurora+Cafe,+Zion+City`;
+
+        // Save to local log for Owner Dashboard
+        const booking = { name, phone, guests, date, time, special, timestamp: new Date().getTime() };
+        const bookings = JSON.parse(localStorage.getItem('aurora_bookings') || '[]');
+        bookings.push(booking);
+        localStorage.setItem('aurora_bookings', JSON.stringify(bookings));
+
+        // Close modal and reset
+        closeReserveModal();
+        reserveForm.reset();
+
+        // Show "Add to Calendar" toast after a short delay
         setTimeout(() => {
+            showToast(`<a href="${calUrl}" target="_blank" style="color:var(--gold); text-decoration:underline;">Click here to add this to your Google Calendar!</a>`, 'info');
+            // Finally open WhatsApp
             window.open(whatsappUrl, '_blank');
-            closeReserveModal();
-            reserveForm.reset();
-        }, 1500);
+        }, 2000);
     });
 }
 

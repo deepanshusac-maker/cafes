@@ -292,7 +292,57 @@
         </div>
     </footer>
 
+    <!-- ── RESERVATION MODAL ── -->
+    <div class="modal-overlay" id="reserveModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeReserveModal()">✕</button>
+            <h3 class="modal-title">Table Reservation</h3>
+            <p class="modal-subtitle">Experience Aurora</p>
+
+            <form class="reservation-form" id="reserveForm">
+                <div class="form-group">
+                    <label for="resName">Full Name</label>
+                    <input type="text" id="resName" placeholder="e.g. John Doe" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resPhone">Phone Number</label>
+                        <input type="tel" id="resPhone" placeholder="+91 ..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resGuests">Guests</label>
+                        <select id="resGuests">
+                            <option value="1">1 person</option>
+                            <option value="2" selected>2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5 people</option>
+                            <option value="6+">6+ (Group)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resDate">Date</label>
+                        <input type="date" id="resDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resTime">Time</label>
+                        <input type="time" id="resTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resSpecial">Special Requests (Optional)</label>
+                    <textarea id="resSpecial" rows="2" placeholder="Anniversary, dietary preferences, etc."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="reserveSubmit">Request Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
     <script src="script.js"></script>
 </body>
 
 </html>
+```

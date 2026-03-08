@@ -61,7 +61,20 @@ window.addEventListener('load', () => {
 });
 
 // ── DYNAMIC OPENING STATUS ──
+function getCafeSettings() {
+    const saved = localStorage.getItem('aurora_settings');
+    if (saved) return JSON.parse(saved);
+    return (typeof CAFE_SETTINGS !== 'undefined') ? CAFE_SETTINGS : {
+        hours: {
+            weekday: { open: 10, close: 23 },
+            weekend: { open: 9, close: 23 }
+        },
+        statusMode: 'auto'
+    };
+}
+
 function updateCafeStatus() {
+    const settings = getCafeSettings();
     const now = new Date();
     const day = now.getDay();
     const hour = now.getHours();
@@ -71,18 +84,37 @@ function updateCafeStatus() {
 
     if (!pill || !text) return;
 
-    const isWeekend = (day === 0 || day === 6);
-    const openHour = isWeekend ? 9 : 10;
-    const closeHour = 23;
+    let isOpen = false;
+    let statusMsg = '';
 
-    const isOpen = (hour >= openHour && hour < closeHour);
+    if (settings.statusMode === 'open') {
+        isOpen = true;
+        statusMsg = 'Open Now • Experience Aurora';
+    } else if (settings.statusMode === 'closed') {
+        isOpen = false;
+        statusMsg = 'Closed • Check back soon';
+    } else {
+        // Auto Mode
+        const isWeekend = (day === 0 || day === 6);
+        const hours = isWeekend ? settings.hours.weekend : settings.hours.weekday;
+
+        isOpen = (hour >= hours.open && hour < hours.close);
+
+        if (isOpen) {
+            const closeTime = hours.close > 12 ? `${hours.close - 12} PM` : `${hours.close} AM`;
+            statusMsg = `Open Now • Serving until ${closeTime}`;
+        } else {
+            const openTime = hours.open > 12 ? `${hours.open - 12} PM` : `${hours.open} AM`;
+            statusMsg = `Closed • Opens at ${openTime}`;
+        }
+    }
 
     if (isOpen) {
         pill.className = 'status-pill open';
-        text.innerText = 'Open Now • Serving until 11 PM';
+        text.innerText = statusMsg;
     } else {
         pill.className = 'status-pill closed';
-        text.innerText = `Closed • Opens ${isWeekend ? 'at 9 AM' : 'at 10 AM'}`;
+        text.innerText = statusMsg;
     }
 }
 
@@ -190,3 +222,71 @@ if (slider && track) {
         track.style.transform = `translateX(${x}px)`;
     });
 }
+// ── RESERVATION MODAL LOGIC ──
+function openReserveModal() {
+    const modal = document.getElementById('reserveModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        // Force reflow for transition
+        modal.offsetHeight;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    }
+}
+
+function closeReserveModal() {
+    const modal = document.getElementById('reserveModal');
+    if (modal) {
+        modal.classList.remove('open');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 400);
+    }
+}
+
+// Handle Reservation Form Submission
+const reserveForm = document.getElementById('reserveForm');
+if (reserveForm) {
+    reserveForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('resName').value;
+        const phone = document.getElementById('resPhone').value;
+        const guests = document.getElementById('resGuests').value;
+        const date = document.getElementById('resDate').value;
+        const time = document.getElementById('resTime').value;
+        const special = document.getElementById('resSpecial').value;
+
+        // Construct WhatsApp message
+        const message = `Hi Aurora Cafe! I'd like to request a reservation:
+- Name: ${name}
+- Phone: ${phone}
+- Group Size: ${guests}
+- Date: ${date}
+- Time: ${time}
+${special ? `- Special Requests: ${special}` : ''}`;
+
+        const encodedMessage = encodeURIComponent(message);
+
+        // Use phone from settings.js or fallback
+        const cafePhone = (typeof CAFE_SETTINGS !== 'undefined') ? CAFE_SETTINGS.phone.replace(/\s+/g, '') : '911234567890';
+
+        const whatsappUrl = `https://wa.me/${cafePhone}?text=${encodedMessage}`;
+
+        // Open WhatsApp
+        window.open(whatsappUrl, '_blank');
+
+        // Close modal
+        closeReserveModal();
+        reserveForm.reset();
+    });
+}
+
+// Update all "Reserve" buttons to open modal
+document.querySelectorAll('a[href="contact.html"].nav-cta, .btn-primary[href="contact.html"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openReserveModal();
+    });
+});

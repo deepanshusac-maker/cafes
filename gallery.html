@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery — The Aurora Cafe</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ── PRELOADER ── -->
+    <div class="preloader" id="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">The <span>Aurora</span> Cafe</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">The <span>Aurora</span> Cafe</a>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Visit Us</a></li>
+            <li><a href="contact.html" class="nav-cta">Reserve</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="openMobileNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Visit Us</a>
+        <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
+    </div>
+
+    <!-- ── GALLERY HERO ── -->
+    <section id="hero" style="height: 60vh; min-height: 400px;">
+        <div class="hero-bg" style="background-image: url('images/garden.jpg');"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Visual Journey</p>
+            <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 5rem);">Our <em>Gallery</em></h1>
+        </div>
+    </section>
+
+    <!-- ── GALLERY CONTENT ── -->
+    <section id="gallery">
+        <div class="gallery-header reveal">
+            <p class="section-label" style="color:var(--gold)">Visual Stories</p>
+            <h2 class="section-title" style="color:var(--cream)">Inside the <em>Cafe</em></h2>
+            <p>Warm lights, curated corners, and moments worth staying for.</p>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="g-item" data-label="Our Space">
+                <img src="images/space.jpg" alt="Cafe Space" loading="lazy">
+            </div>
+            <div class="g-item" data-label="Coffee Craft">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600"
+                    alt="Latte Art" loading="lazy">
+            </div>
+            <div class="g-item" data-label="Garden Corner">
+                <img src="images/garden.jpg" alt="Cafe Plants" loading="lazy">
+            </div>
+            <div class="g-item" data-label="Evening Vibe">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800"
+                    alt="Night Ambiance" loading="lazy">
+            </div>
+            <div class="g-item" data-label="Weekend Brunch">
+                <img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&q=80&w=600"
+                    alt="Brunch Spread">
+            </div>
+            <div class="g-item" data-label="Sweet Treats">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600"
+                    alt="Desserts">
+            </div>
+            <!-- Added more for full page feel -->
+            <div class="g-item" data-label="Quiet Nooks">
+                <img src="https://images.unsplash.com/photo-1521017432531-fbd92d744264?auto=format&fit=crop&q=80&w=600"
+                    alt="Quiet Corner">
+            </div>
+            <div class="g-item" data-label="Artisan Bakes">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600"
+                    alt="Fresh Breads">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">The <span>Aurora</span> Cafe</div>
+                <p>A warm corner of the world in the heart of the city. Crafted coffee, honest food, and good company —
+                    always.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" title="Instagram">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="5" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Facebook">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Twitter/X">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Zomato">🍽</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Opening Hours</h5>
+                <ul>
+                    <li><a href="#">Mon – Fri: 10am – 11pm</a></li>
+                    <li><a href="#">Sat – Sun: 9am – 11pm</a></li>
+                    <li><a href="#">Holidays: 10am – 11pm</a></li>
+                    <li><a href="#">📞 +91 12345 67890</a></li>
+                    <li><a href="#">✉ hello@auroracafe.demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Aurora Cafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

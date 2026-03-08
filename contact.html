@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact & Visit — The Aurora Cafe</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ── PRELOADER ── -->
+    <div class="preloader" id="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">The <span>Aurora</span> Cafe</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">The <span>Aurora</span> Cafe</a>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html" class="active">Visit Us</a></li>
+            <li><a href="contact.html" class="nav-cta">Reserve</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="openMobileNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Visit Us</a>
+        <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
+    </div>
+
+    <!-- ── CONTACT HERO ── -->
+    <section id="hero" style="height: 60vh; min-height: 400px;">
+        <div class="hero-bg"
+            style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=1200');">
+        </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Get in Touch</p>
+            <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 5rem);">Visit <em>Us</em></h1>
+        </div>
+    </section>
+
+    <!-- ── VISIT CONTENT ── -->
+    <section id="visit">
+        <div class="visit-grid">
+            <div class="visit-info reveal">
+                <p class="section-label">Find Us</p>
+                <h2 class="section-title">Come <em>Visit</em> Us</h2>
+                <div class="info-block">
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>42 Moonlit Avenue<br>Starlight District<br>Skyline Heights, Downtown<br>Zion City, AR – 90001
+                        </p>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-icon">🕐</div>
+                    <div>
+                        <h4>Opening Hours</h4>
+                        <div class="hours-grid">
+                            <span>Mon – Fri</span><strong>10:00 AM – 11:00 PM</strong>
+                            <span>Sat – Sun</span><strong>9:00 AM – 11:00 PM</strong>
+                            <span>Public Holidays</span><strong>10:00 AM – 11:00 PM</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <h4>Contact</h4>
+                        <p>+91 12345 67890<br>hello@auroracafe.demo</p>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-icon">⭐</div>
+                    <div>
+                        <h4>Reservations</h4>
+                        <p>Walk-ins welcome. For groups of 6+, we recommend calling ahead to ensure the best experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="map-frame">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1234.5!2d0!3d0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAwJzAwLjAiTiAwwrAwMCcwMC4wIkU!5e0!3m2!1sen!2sin!4v1234567890"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="The Aurora Cafe Location">
+                    </iframe>
+                </div>
+                <a href="#" target="_blank" class="btn-primary"
+                    style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;text-decoration:none">
+                    <span>📍</span> Open in Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">The <span>Aurora</span> Cafe</div>
+                <p>A warm corner of the world in the heart of the city. Crafted coffee, honest food, and good company —
+                    always.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" title="Instagram">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="5" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Facebook">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Twitter/X">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Zomato">🍽</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Opening Hours</h5>
+                <ul>
+                    <li><a href="#">Mon – Fri: 10am – 11pm</a></li>
+                    <li><a href="#">Sat – Sun: 9am – 11pm</a></li>
+                    <li><a href="#">Holidays: 10am – 11pm</a></li>
+                    <li><a href="#">📞 +91 12345 67890</a></li>
+                    <li><a href="#">✉ hello@auroracafe.demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Aurora Cafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

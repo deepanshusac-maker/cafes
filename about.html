@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — The Aurora Cafe</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ── PRELOADER ── -->
+    <div class="preloader" id="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">The <span>Aurora</span> Cafe</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">The <span>Aurora</span> Cafe</a>
+        <ul class="nav-links">
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Visit Us</a></li>
+            <li><a href="contact.html" class="nav-cta">Reserve</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="openMobileNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Visit Us</a>
+        <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
+    </div>
+
+    <!-- ── ABOUT HERO ── -->
+    <section id="hero" style="height: 60vh; min-height: 400px;">
+        <div class="hero-bg" style="background-image: url('images/space.jpg');"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Our Story</p>
+            <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 5rem);">About <em>Us</em></h1>
+        </div>
+    </section>
+
+    <!-- ── ABOUT CONTENT ── -->
+    <section id="about">
+        <div class="about-deco"></div>
+        <div class="about-grid">
+            <div class="about-img-wrap reveal-left">
+                <div class="about-img-frame">
+                    <img src="images/space.jpg" alt="The Aurora Cafe Interior" class="about-img" loading="lazy">
+                </div>
+                <div class="about-accent-box reveal-scale stagger-3">
+                    <strong>#1</strong>
+                    <span>Café in the City</span>
+                </div>
+            </div>
+            <div class="about-text reveal-right stagger-2">
+                <p class="section-label">The Vision</p>
+                <h2 class="section-title">A Sip of <em>Aurora</em><br>in your Neighborhood</h2>
+                <p>Born from a simple desire — to create a space where everyone could slow down, savour, and connect.
+                    Inspired by the vibrant café culture, we've blended global sensibilities with warm, local
+                    hospitality.</p>
+                <p>With over 2,100 glowing reviews and a proud 4.6-star rating, we've become one of the most
+                    beloved dining destinations — a place where first dates, family brunches, and late-night
+                    conversations all find a home under one roof.</p>
+                <p>From our hand-crafted espresso blends to our indulgent comfort mains, every item on our menu is
+                    prepared with love, fresh ingredients, and an eye for detail that keeps our guests coming back.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <strong class="counter" data-count="4.6">0</strong><strong>★</strong>
+                        <span>Average Rating</span>
+                    </div>
+                    <div class="stat">
+                        <strong class="counter" data-count="2100">0</strong><strong>+</strong>
+                        <span>Happy Reviews</span>
+                    </div>
+                    <div class="stat">
+                        <strong>11 PM</strong>
+                        <span>Open Until</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">The <span>Aurora</span> Cafe</div>
+                <p>A warm corner of the world in the heart of the city. Crafted coffee, honest food, and good company —
+                    always.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" title="Instagram">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="5" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Facebook">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Twitter/X">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Zomato">🍽</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Opening Hours</h5>
+                <ul>
+                    <li><a href="#">Mon – Fri: 10am – 11pm</a></li>
+                    <li><a href="#">Sat – Sun: 9am – 11pm</a></li>
+                    <li><a href="#">Holidays: 10am – 11pm</a></li>
+                    <li><a href="#">📞 +91 12345 67890</a></li>
+                    <li><a href="#">✉ hello@auroracafe.demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Aurora Cafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -63,14 +63,14 @@ window.addEventListener('load', () => {
 // ── DYNAMIC OPENING STATUS ──
 function updateCafeStatus() {
     const now = new Date();
-    const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+    const day = now.getDay();
     const hour = now.getHours();
 
     const pill = document.getElementById('statusPill');
     const text = document.getElementById('statusText');
 
-    // Sat=6, Sun=0: 9 AM - 11 PM
-    // Mon-Fri: 10 AM - 11 PM
+    if (!pill || !text) return;
+
     const isWeekend = (day === 0 || day === 6);
     const openHour = isWeekend ? 9 : 10;
     const closeHour = 23;
@@ -90,32 +90,41 @@ function updateCafeStatus() {
 const filterBtns = document.querySelectorAll('.filter-btn');
 const menuCards = document.querySelectorAll('.menu-card');
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Update active button
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-        const filter = btn.getAttribute('data-filter');
+            const filter = btn.getAttribute('data-filter');
 
-        menuCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            if (filter === 'all' || category === filter) {
-                card.classList.remove('filtered-out');
-                // Re-trigger reveal animation if hidden
-                setTimeout(() => card.classList.add('visible'), 50);
-            } else {
-                card.classList.add('filtered-out');
-                card.classList.remove('visible');
-            }
+            menuCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.classList.remove('filtered-out');
+                    setTimeout(() => card.classList.add('visible'), 50);
+                } else {
+                    card.classList.add('filtered-out');
+                    card.classList.remove('visible');
+                }
+            });
         });
     });
-});
+}
+
+// Mobile Nav
+function openMobileNav() {
+    const mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.add('open');
+}
+function closeMobileNav() {
+    const mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.remove('open');
+}
 
 // Initialize dynamic content
 document.addEventListener('DOMContentLoaded', () => {
     updateCafeStatus();
-    // Refresh status every minute
     setInterval(updateCafeStatus, 60000);
 });
 

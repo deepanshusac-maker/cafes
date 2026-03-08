@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Menu — The Aurora Cafe</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ── PRELOADER ── -->
+    <div class="preloader" id="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">The <span>Aurora</span> Cafe</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">The <span>Aurora</span> Cafe</a>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Visit Us</a></li>
+            <li><a href="contact.html" class="nav-cta">Reserve</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="openMobileNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Visit Us</a>
+        <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
+    </div>
+
+    <!-- ── MENU HERO ── -->
+    <section id="hero" style="height: 60vh; min-height: 400px;">
+        <div class="hero-bg"
+            style="background-image: url('https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&q=80&w=1200');">
+        </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Exquisite Flavours</p>
+            <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 5rem);">Our <em>Menu</em></h1>
+        </div>
+    </section>
+
+    <!-- ── MENU CONTENT ── -->
+    <section id="menu">
+        <div class="menu-header reveal-scale stagger-1">
+            <p class="section-label">What We Serve</p>
+            <h2 class="section-title">Signature <em>Highlights</em></h2>
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.8;margin-top:.8rem">From morning brews to
+                midnight bites — our menu is crafted to delight every palate, every hour.</p>
+        </div>
+
+        <!-- Menu Filter Bar -->
+        <div class="menu-filters reveal-scale">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="coffee">Coffee</button>
+            <button class="filter-btn" data-filter="snack">Snacks</button>
+            <button class="filter-btn" data-filter="main">Mains</button>
+            <button class="filter-btn" data-filter="dessert">Desserts</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-card reveal-scale stagger-1" data-category="coffee">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&q=80&w=600"
+                        alt="Aurora Cold Brew" loading="lazy">
+                    <span class="menu-tag">Signature</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Aurora Cold Brew</h3>
+                    <p>12-hour steeped cold brew with oat milk foam and a hint of Madagascar vanilla.</p>
+                    <div class="menu-price"><strong>₹ 220</strong><span>Bestseller</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-2" data-category="coffee">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1541167760496-162955ed8a9f?auto=format&fit=crop&q=80&w=600"
+                        alt="Spiced Masala Latte" loading="lazy">
+                    <span class="menu-tag">Coffee</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Spiced Masala Latte</h3>
+                    <p>A desi-inspired latte with cardamom, ginger, cinnamon &amp; single-origin espresso.</p>
+                    <div class="menu-price"><strong>₹ 195</strong><span>Fan Favourite</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-3" data-category="snack">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=600"
+                        alt="Peri-Peri Paneer Toast" loading="lazy">
+                    <span class="menu-tag">Snack</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Peri-Peri Paneer Toast</h3>
+                    <p>Thick sourdough with flame-grilled paneer, roasted peppers &amp; house peri-peri drizzle.</p>
+                    <div class="menu-price"><strong>₹ 260</strong><span>Vegetarian</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-4" data-category="main">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=600"
+                        alt="Smoky BBQ Pasta" loading="lazy">
+                    <span class="menu-tag">Main</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Smoky BBQ Pasta</h3>
+                    <p>Al dente penne in a rich smoked tomato &amp; herb sauce, topped with parmesan shavings.</p>
+                    <div class="menu-price"><strong>₹ 340</strong><span>Chef's Pick</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-1" data-category="main">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600"
+                        alt="Aurora Classic Burger" loading="lazy">
+                    <span class="menu-tag">Main</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Aurora Classic Burger</h3>
+                    <p>Double-stacked patty with caramelised onions, aged cheddar, pickles &amp; truffle aioli.</p>
+                    <div class="menu-price"><strong>₹ 380</strong><span>Bestseller</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-2" data-category="snack">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&q=80&w=600"
+                        alt="Avocado &amp; Feta Bowl" loading="lazy">
+                    <span class="menu-tag">Light Bite</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Avocado &amp; Feta Bowl</h3>
+                    <p>Fresh greens, roasted cherry tomatoes, creamy avocado, feta &amp; lemon-herb vinaigrette.</p>
+                    <div class="menu-price"><strong>₹ 295</strong><span>Healthy</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-3" data-category="dessert">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=80&w=600"
+                        alt="Belgian Waffle Stack" loading="lazy">
+                    <span class="menu-tag">Dessert</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Belgian Waffle Stack</h3>
+                    <p>Golden waffles layered with Nutella, fresh strawberries, vanilla cream &amp; crushed almonds.</p>
+                    <div class="menu-price"><strong>₹ 280</strong><span>Sweet Treat</span></div>
+                </div>
+            </div>
+            <div class="menu-card reveal-scale stagger-4" data-category="dessert">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=600"
+                        alt="Dark Choco Lava Cake" loading="lazy">
+                    <span class="menu-tag">Must Try</span>
+                </div>
+                <div class="menu-card-body">
+                    <h3>Dark Choco Lava Cake</h3>
+                    <p>Warm molten dark chocolate cake with a vanilla bean ice cream quenelle.</p>
+                    <div class="menu-price"><strong>₹ 245</strong><span>Must Try</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">The <span>Aurora</span> Cafe</div>
+                <p>A warm corner of the world in the heart of the city. Crafted coffee, honest food, and good company —
+                    always.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" title="Instagram">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="5" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Facebook">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Twitter/X">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-btn" title="Zomato">🍽</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Visit Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Opening Hours</h5>
+                <ul>
+                    <li><a href="#">Mon – Fri: 10am – 11pm</a></li>
+                    <li><a href="#">Sat – Sun: 9am – 11pm</a></li>
+                    <li><a href="#">Holidays: 10am – 11pm</a></li>
+                    <li><a href="#">📞 +91 12345 67890</a></li>
+                    <li><a href="#">✉ hello@auroracafe.demo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Aurora Cafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
